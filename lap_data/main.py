@@ -1,10 +1,7 @@
 import logging
-import os
-import shutil
 import sys
 import warnings
 
-import fastf1
 import pandas as pd
 
 from .config.settings import YEARS, DEFAULT_COLUMNS
@@ -28,6 +25,7 @@ logging.getLogger('urllib3').setLevel(logging.WARNING)
 
 # Columns to uniquely identify a lap for deduplication
 UNIQUE_LAP_COLS = list(set(DEFAULT_COLUMNS))
+
 
 def run_pipeline(year=None, race_index=None):
     """

@@ -1,8 +1,9 @@
 import os
 
+import pandas as pd
 import pycountry
 from fuzzywuzzy import process
-import pandas as pd
+
 
 def clean_track_name(track_name: str) -> str:
     return track_name.replace(' Grand Prix', '').strip()
@@ -68,9 +69,10 @@ def append_to_csv(df: pd.DataFrame, filepath: str, unique_cols=None):
     # Save
     combined.to_csv(filepath, index=False)
 
+
 def gp_to_country(track_name):
     # Remove 'Grand Prix'
-    name = track_name.replace("Grand Prix","").strip()
+    name = track_name.replace("Grand Prix", "").strip()
 
     # Try exact match with pycountry
     country = pycountry.countries.get(name=name)

@@ -1,5 +1,5 @@
-from lap_data.extractor.utils import gp_to_country
 from lap_data.config.settings import DEFAULT_COLUMNS
+from lap_data.extractor.utils import gp_to_country
 
 
 def infer_weather_from_tyre(compound):
