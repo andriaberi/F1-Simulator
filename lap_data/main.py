@@ -74,16 +74,23 @@ def run_pipeline(year: int = None, race_index: int = None):
                 laps_df = fetch_laps(y, track)              # should call session.load ONCE
                 df_clean = clean_lap_data(laps_df, track)
 
-                output_file = generate_output_path(
-                    year=y,
-                    race_index=race_index,
-                )
+                output_targets = [
+                    {"year": None, "race_index": None},  # global
+                    {"year": y, "race_index": None},  # per-year
+                    {"year": y, "race_index": race_index if race_index is not None else idx},
+                ]
 
-                append_to_csv(
-                    df_clean,
-                    output_file,
-                    unique_cols=UNIQUE_LAP_COLS
-                )
+                for target in output_targets:
+                    output_file = generate_output_path(
+                        year=target["year"],
+                        race_index=target["race_index"],
+                    )
+
+                    append_to_csv(
+                        df_clean,
+                        output_file,
+                        unique_cols=UNIQUE_LAP_COLS,
+                    )
 
                 saved += 1
                 print(f"{prefix}Saved")
