@@ -4,8 +4,8 @@ from lap_data.config.settings import DEFAULT_COLUMNS
 def infer_weather_from_tyre(compound):
     compound = str(compound).upper()
     if compound in ['INTERMEDIATE', 'WET']:
-        return 'wet'
-    return 'dry'
+        return 'Wet'
+    return 'Dry'
 
 
 def clean_lap_data(df, track_name):
