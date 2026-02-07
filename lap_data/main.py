@@ -70,7 +70,7 @@ def run_pipeline(year: int = None, race_index: int = None):
 
         # Save cleaned data to CSV per race
         for df, track_name in all_laps:
-            output_file = generate_output_path(year=y, race_index=race_index, track_name=track_name)
+            output_file = generate_output_path(year=y, race_index=race_index)
             append_to_csv(df, output_file, unique_cols=UNIQUE_LAP_COLS)
 
         # Summary per year

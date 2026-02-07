@@ -3,13 +3,14 @@ import os
 import pandas as pd
 import pycountry
 from fuzzywuzzy import process
+from rapidfuzz import process, fuzz
 
 
 def clean_track_name(track_name: str) -> str:
     return track_name.replace(' Grand Prix', '').strip()
 
 
-def generate_output_path(year=None, race_index=None, track_name=None, output_dir="data"):
+def generate_output_path(year=None, race_index=None, output_dir="data"):
     """
     Generate CSV file path(s) for storing F1 lap data.
 
@@ -33,11 +34,6 @@ def generate_output_path(year=None, race_index=None, track_name=None, output_dir
 
     # Year + race_index (optional country)
     race_file = f"{race_index}.csv"
-    if track_name:
-        country = gp_to_country(track_name)
-        # Clean country name (remove spaces)
-        country_clean = country.replace(" ", "_")
-        race_file = f"{race_index}_{country_clean}.csv"
 
     return os.path.join(year_folder, race_file)
 
@@ -68,22 +64,3 @@ def append_to_csv(df: pd.DataFrame, filepath: str, unique_cols=None):
 
     # Save
     combined.to_csv(filepath, index=False)
-
-
-def gp_to_country(track_name):
-    # Remove 'Grand Prix'
-    name = track_name.replace("Grand Prix", "").strip()
-
-    # Try exact match with pycountry
-    country = pycountry.countries.get(name=name)
-    if country:
-        return country.name
-
-    # If exact match fails, use fuzzy matching
-    all_country_names = [c.name for c in pycountry.countries]
-    match, score = process.extractOne(name, all_country_names)
-    if score > 80:
-        return match
-
-    # fallback
-    return name
