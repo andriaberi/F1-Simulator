@@ -16,7 +16,7 @@ def generate_output_path(year=None, race_index=None, output_dir="data"):
 
     - No year -> data/all.csv (global)
     - Year only -> data/<year>/all.csv (all races in that year)
-    - Year + race_index -> data/<year>/race/<race_index>.csv
+    - Year + race_index -> data/<year>/races/<race_index>.csv
     """
     os.makedirs(output_dir, exist_ok=True)
 
@@ -32,7 +32,7 @@ def generate_output_path(year=None, race_index=None, output_dir="data"):
     if race_index is None:
         return os.path.join(year_folder, "all.csv")
 
-    race_folder = os.path.join(year_folder, "race")
+    race_folder = os.path.join(year_folder, "races")
     os.makedirs(race_folder, exist_ok=True)
 
     # Year + race_index (optional country)
