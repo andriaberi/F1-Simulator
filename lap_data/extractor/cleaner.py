@@ -1,22 +1,11 @@
 from lap_data.config.settings import DEFAULT_COLUMNS
 
-
-def infer_weather_from_tyre(compound):
-    compound = str(compound).upper()
-    if compound in ['INTERMEDIATE', 'WET']:
-        return 'Wet'
-    return 'Dry'
-
-
 def clean_lap_data(df, track_name):
-    """Keep only essential columns, add Racetrack, Weather, and TyreLap"""
+    """Keep only essential columns, and add Race Event column"""
     cols = DEFAULT_COLUMNS
     df_clean = df[[c for c in cols if c in df.columns]].copy()
 
-    # Racetrack
-    df_clean['Racetrack'] = track_name
-
-    # Weather
-    df_clean['Weather'] = df_clean['Compound'].apply(infer_weather_from_tyre)
+    # Event
+    df_clean['Event'] = track_name
 
     return df_clean
