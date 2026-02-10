@@ -7,6 +7,8 @@ def fetch_laps(year, track):
     session.load()
     laps = session.laps
 
-    # Convert LapTime to seconds
-    laps['LapTime'] = laps['LapTime'].dt.total_seconds()
+    # Convert time to seconds
+    for col in ['LapTime', 'Sector1Time', 'Sector2Time', 'Sector3Time']:
+        laps[col] = laps[col].dt.total_seconds()
+
     return laps
