@@ -1,18 +1,24 @@
-[project]
-name = "lap_data"
-version = "1.0.0"
-description = "F1 lap data extraction package using FastF1"
-authors = [
-    { name="Andria Beridze", email="andria24b@gmail.com" }
-]
-readme = "README.md"
-requires-python = ">=3.9"
-
-[tool.poetry.dependencies]
-python = ">=3.9"
-pandas = "^2.0"
-fastf1 = "^3.7"
-
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "f1-pipeline"
+version = "1.0.0"
+description = "F1 lap data extractor and lap time predictor"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas",
+    "numpy",
+    "fastf1",
+    "lightgbm",
+    "scikit-learn",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["lap_data", "laptime_predictor"]
+
+# Optional scripts / CLI entry points
+[project.scripts]
+lap-data        = "lap_data.main:main"
+laptime-predict = "laptime_predictor.main:main"
