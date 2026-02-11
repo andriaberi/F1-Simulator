@@ -210,3 +210,5 @@ __marimo__/
 cache
 data
 .idea
+*.csv
+*.pkl
