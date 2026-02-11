@@ -213,3 +213,7 @@ data
 .idea
 *.csv
 *.pkl
+node_modules/
+staticfiles/
+migrations/
+media/
