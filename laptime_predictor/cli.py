@@ -1,6 +1,4 @@
 """
-cli.py
-======
 Command-line interface for laptime_predictor.
 
 Commands
@@ -15,10 +13,9 @@ Commands
 import argparse
 import sys
 
+from laptime_predictor.config import DEFAULT_MODEL_PATH, DEFAULT_DATA_PATH
 from laptime_predictor.main import train, predict, evaluate
 from laptime_predictor.predictor import F1LapPredictor
-from laptime_predictor.config import DEFAULT_MODEL_PATH, DEFAULT_DATA_PATH
-
 
 # Hardcoded demo scenarios
 DEMO_SCENARIOS = [

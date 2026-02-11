@@ -8,9 +8,8 @@ at simulation time (LapTime, Sector1/2/3Time, BestLap).=
 from __future__ import annotations
 
 import warnings
-import numpy as np
-import pandas as pd
 
+import pandas as pd
 
 # Columns we need to impute for simulation
 _IMPUTE_COLS = ["LapTime", "Sector1Time", "Sector2Time", "Sector3Time"]
@@ -19,8 +18,8 @@ _IMPUTE_COLS = ["LapTime", "Sector1Time", "Sector2Time", "Sector3Time"]
 _FALLBACK_CHAIN = [
     ("Driver", "Event", "Compound"),
     ("Driver", "Compound"),
-    ("Team",   "Event", "Compound"),
-    ("Event",  "Compound"),
+    ("Team", "Event", "Compound"),
+    ("Event", "Compound"),
     ("Compound",),
 ]
 
@@ -60,21 +59,21 @@ class SimulatorImputer:
 
     # Imputation
     def impute(
-        self,
-        Driver: str,
-        Team: str,
-        Event: str,
-        Compound: str,
-        TyreLife: int | float,
-        n_laps: int = 1,
+            self,
+            Driver: str,
+            Team: str,
+            Event: str,
+            Compound: str,
+            TyreLife: int | float,
+            n_laps: int = 1,
     ) -> pd.DataFrame:
         """Build a synthetic DataFrame row (or rows) ready for build_features()."""
         lookup_key = {
             ("Driver", "Event", "Compound"): (Driver, Event, Compound),
-            ("Driver", "Compound"):          (Driver, Compound),
-            ("Team",   "Event", "Compound"): (Team,   Event, Compound),
-            ("Event",  "Compound"):          (Event,  Compound),
-            ("Compound",):                   (Compound,),
+            ("Driver", "Compound"): (Driver, Compound),
+            ("Team", "Event", "Compound"): (Team, Event, Compound),
+            ("Event", "Compound"): (Event, Compound),
+            ("Compound",): (Compound,),
         }
 
         imputed = {}
@@ -98,16 +97,16 @@ class SimulatorImputer:
         rows = []
         for i in range(n_laps):
             rows.append({
-                "Driver":      Driver,
-                "Team":        Team,
-                "Event":       Event,
-                "Compound":    Compound,
-                "TyreLife":    int(TyreLife) + i,
-                "LapTime":     imputed["LapTime"],
+                "Driver": Driver,
+                "Team": Team,
+                "Event": Event,
+                "Compound": Compound,
+                "TyreLife": int(TyreLife) + i,
+                "LapTime": imputed["LapTime"],
                 "Sector1Time": imputed["Sector1Time"],
                 "Sector2Time": imputed["Sector2Time"],
                 "Sector3Time": imputed["Sector3Time"],
-                "BestLap":     imputed["BestLap"],
+                "BestLap": imputed["BestLap"],
             })
 
         return pd.DataFrame(rows)
@@ -132,10 +131,10 @@ class SimulatorImputer:
         """
         lookup_key = {
             ("Driver", "Event", "Compound"): (Driver, Event, Compound),
-            ("Driver", "Compound"):          (Driver, Compound),
-            ("Team",   "Event", "Compound"): (Driver, Event, Compound),  # Team unknown here
-            ("Event",  "Compound"):          (Event,  Compound),
-            ("Compound",):                   (Compound,),
+            ("Driver", "Compound"): (Driver, Compound),
+            ("Team", "Event", "Compound"): (Driver, Event, Compound),  # Team unknown here
+            ("Event", "Compound"): (Event, Compound),
+            ("Compound",): (Compound,),
         }
         for keys in _FALLBACK_CHAIN:
             key = lookup_key[keys]

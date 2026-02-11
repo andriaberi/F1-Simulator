@@ -1,6 +1,4 @@
 """
-predictor/utils.py
-==================
 Stateless helper functions for data I/O and transformations.
 """
 

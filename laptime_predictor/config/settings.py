@@ -27,9 +27,9 @@ FEATURES = [
 
 # Feature engineering
 ROLLING_WINDOW: int = 3
-FUEL_LOAD_FACTOR: float = 0.0015   # per-lap fuel weight penalty
+FUEL_LOAD_FACTOR: float = 0.0015  # per-lap fuel weight penalty
 TYRE_DEGRADE_FACTOR: float = 0.003  # per-lap tyre degradation
-OUTLIER_QUANTILE: float = 0.995     # remove top 0.5% lap times
+OUTLIER_QUANTILE: float = 0.995  # remove top 0.5% lap times
 
 # Training
 DEFAULT_TEST_SIZE: float = 0.2
