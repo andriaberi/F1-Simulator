@@ -1,3 +1,65 @@
 .navbar {
-    color: var(--text);
+    @include fixed(0, 0, auto, 0);
+    height: 4rem;
+    border-bottom: var(--border-size-sm) solid var(--text-dark-20);
+    padding: 0 var(--margin-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .nav-logo {
+        display: flex;
+        position: relative;
+        height: 100%;
+        align-items: center;
+        font-size: 1.25rem;
+        color: var(--secondary);
+        gap: var(--gap-sm);
+
+        img {
+            height: 35%;
+        }
+    }
+
+    .nav-list {
+        display: flex;
+        gap: var(--gap-xl);
+        height: 100%;
+        position: relative;
+
+        .nav-item {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            position: relative;
+
+            &.active {
+                color: var(--secondary);
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    height: 0;
+                    border: var(--border-size-sm) solid var(--primary);
+                }
+            }
+
+            &:not(.active) {
+                &:hover {
+                    color: var(--secondary);
+
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        width: 100%;
+                        height: 0;
+                        border: var(--border-size-sm) solid var(--secondary);
+                    }
+                }
+            }
+        }
+    }
 }

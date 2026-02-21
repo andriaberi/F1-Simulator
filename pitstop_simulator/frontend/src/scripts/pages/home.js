@@ -3,7 +3,7 @@ import Navbar from '../includes/navbar'
 function Home() {
     return (
         <>
-           <Navbar />
+           <Navbar pageName="home"/>
         </>
     );
 }
