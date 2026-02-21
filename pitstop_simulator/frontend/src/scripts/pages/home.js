@@ -1,7 +1,9 @@
+import Navbar from '../includes/navbar'
+
 function Home() {
     return (
         <>
-            F1 Simulator
+           <Navbar />
         </>
     );
 }
