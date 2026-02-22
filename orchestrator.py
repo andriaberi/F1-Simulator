@@ -92,16 +92,16 @@ def main():
     print("Jobs:")
     print("  data  -> lap_data")
     print("  pred  -> laptime_predictor")
-    print("  siml  -> pitstop_simulation")
+    print("   sim  -> pitstop_simulation")
 
-    job = ask("Select job (data | pred | siml): ")
+    job = ask("Select job (data | pred | sim): ")
 
     match job:
         case "data":
             run_data(python_exe)
         case "pred":
             run_predictor(python_exe)
-        case "siml":
+        case "sim":
             run_simulation()
         case _:
             print("Unknown job")
