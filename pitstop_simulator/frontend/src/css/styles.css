@@ -201,7 +201,7 @@
 }
 .navbar .nav-list {
   display: flex;
-  gap: var(--gap-xl);
+  gap: var(--gap-lg);
   height: 100%;
   position: relative;
 }
