@@ -32,7 +32,7 @@ $flat-colors: (
     $result: ();
 
     // Light shades
-    @for $i from 1 through 10 {
+    @for $i from 1 through 15 {
         $percent: $i * 2;
         $key: shade-name($name, "light", $percent);
         $value: rgb-int(lighten($color, $percent));
@@ -40,7 +40,7 @@ $flat-colors: (
     }
 
     // Dark shades
-    @for $i from 1 through 10 {
+    @for $i from 1 through 15 {
         $percent: $i * 2;
         $key: shade-name($name, "dark", $percent);
         $value: rgb-int(darken($color, $percent));

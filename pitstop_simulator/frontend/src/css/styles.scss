@@ -11,13 +11,15 @@
 
 // Sections
 
+// Pages
+
 // Bases
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    padding: 0;
+    padding: 4rem 0 0 0;
     margin: 0;
     background-color: var(--background);
     color: var(--text);
