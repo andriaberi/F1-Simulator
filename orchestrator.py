@@ -79,6 +79,13 @@ def run_predictor(python_exe: str):
     subprocess.run(cmd, cwd=ROOT)
 
 
+def run_simulation():
+    system = platform.system()
+    make_cmd = ["make", "run-dev"] if system != "Windows" else ["cmd", "/c", "make", "run-dev"]
+
+    subprocess.run(make_cmd, cwd=ROOT / "pitstop_simulator")
+
+
 def main():
     python_exe = get_venv_python()
 
@@ -94,6 +101,8 @@ def main():
             run_data(python_exe)
         case "pred":
             run_predictor(python_exe)
+        case "sim":
+            run_simulation()
         case _:
             print("Unknown job")
 
