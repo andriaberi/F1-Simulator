@@ -37,60 +37,64 @@ def _fmt(seconds: float) -> str:
 
 
 def _run_info(predictor: F1LapPredictor) -> None:
-    """Print everything the model knows about itself."""
-    SEP  = "=" * 60
-    SEP2 = "-" * 60
+    print("\nMODEL SUMMARY")
+    print("─" * 60)
+    print(f"Train MAE    {predictor.train_mae_:.3f} s")
+    print(f"Test  MAE    {predictor.test_mae_:.3f} s")
 
-    drivers   = predictor.known_drivers()
-    events    = predictor.known_events()
-    compounds = predictor.known_compounds()
-
-    print(f"\n{SEP}")
-    print("  MODEL INFO")
-    print(SEP)
-    print(f"  Train MAE : {predictor.train_mae_:.3f} s")
-    print(f"  Test  MAE : {predictor.test_mae_:.3f} s")
-
-    print(f"\n{SEP2}")
-    print(f"  Drivers ({len(drivers)})")
-    print(SEP2)
-    # Print in columns of 6
+    # Drivers
+    drivers = predictor.known_drivers()
+    print(f"\n\nDRIVERS ({len(drivers)})")
+    print("─" * 60)
     for i in range(0, len(drivers), 6):
-        print("  " + "  ".join(f"{d:<4}" for d in drivers[i:i+6]))
+        print(" ".join(f"{d:<5}" for d in drivers[i:i + 6]))
 
-    print(f"\n{SEP2}")
-    print(f"  Events ({len(events)})")
-    print(SEP2)
+    # Events
+    events = predictor.known_events()
+    print(f"\n\nEVENTS ({len(events)})")
+    print("─" * 60)
     for e in events:
-        print(f"  {e}")
+        print(e)
 
-    print(f"\n{SEP2}")
-    print(f"  Compounds ({len(compounds)})")
-    print(SEP2)
-    print("  " + "  ".join(compounds))
+    # Compounds
+    compounds = predictor.known_compounds()
+    print("\n\nCOMPOUNDS")
+    print("─" * 60)
+    print(" ".join(f"{c:<7}" for c in compounds))
 
-    print(f"\n{SEP2}")
-    print("  Top 10 Features by Importance")
-    print(SEP2)
+    # Feature importance
+    print("\n\nTOP FEATURES (by importance)")
+    print("─" * 60)
+    max_score = predictor.feature_importance_.max()
+
     for feat, score in predictor.feature_importance(top_n=10).items():
-        bar = "█" * int(score / predictor.feature_importance_.max() * 30)
-        print(f"  {feat:<35} {bar}")
-
-    print()
+        bar_len = int((score / max_score) * 30)
+        bar = "█" * bar_len
+        print(f"{feat:<35} {bar}")
 
 
 def _run_demo(predictor: F1LapPredictor) -> None:
-    """Run hardcoded simulation scenarios and print formatted results."""
-    SEP  = "=" * 60
-    SEP2 = "-" * 60
-
-    print(f"\n{SEP}")
-    print("  SIMULATION DEMO")
-    print(SEP)
+    print("\nSIMULATION RESULTS")
+    print("─" * 72)
+    print(
+        f"{'Driver':<7}"
+        f"{'Event':<21}"
+        f"{'Cmpd':<6}"
+        f"{'Tyre':>6}"
+        f"{'Lap(s)':>10}"
+        f"{'Time':>11}"
+    )
+    print(
+        f"{'──────':<7}"
+        f"{'───────────────────':<21}"
+        f"{'────':<6}"
+        f"{'────':>6}"
+        f"{'───────':>10}"
+        f"{'───────':>11}"
+    )
 
     for driver, team, event, compound, tyre_life, n_laps in DEMO_SCENARIOS:
-        coverage = predictor.imputer_.coverage(driver, event, compound)
-        result   = predictor.simulate(
+        result = predictor.simulate(
             Driver=driver,
             Team=team,
             Event=event,
@@ -100,16 +104,29 @@ def _run_demo(predictor: F1LapPredictor) -> None:
             verbose=False,
         )
 
-        print(f"\n  {driver} | {team} | {event}")
-        print(f"  Compound: {compound}  |  Starting tyre age: {tyre_life}")
-        print(f"  Coverage: {coverage}")
-        print(f"  {SEP2}")
-        print(f"  {'Tyre Age':<12} {'Predicted':>12}  {'(m:ss.ms)':>12}")
-        print(f"  {'-'*8:<12} {'-'*9:>12}  {'-'*9:>12}")
+        first = True
         for age, laptime in result.items():
-            print(f"  {age:<12} {laptime:>12.3f}s  {_fmt(laptime):>12}")
+            if first:
+                print(
+                    f"{driver:<7}"
+                    f"{event.replace(' Grand Prix',' GP'):<21}"
+                    f"{compound[:3]:<6}"
+                    f"{age:>6}"
+                    f"{laptime:>10.3f}"
+                    f"{_fmt(laptime):>11}"
+                )
+                first = False
+            else:
+                print(
+                    f"{'':<7}"
+                    f"{'':<21}"
+                    f"{'':<6}"
+                    f"{age:>6}"
+                    f"{laptime:>10.3f}"
+                    f"{_fmt(laptime):>11}"
+                )
 
-    print(f"\n{SEP}\n")
+        print()
 
 
 # Parser

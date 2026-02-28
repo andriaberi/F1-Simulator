@@ -1,0 +1,110 @@
+$base-unit: 1rem;
+
+$fonts: (
+    weight: (
+        light: 300,
+        regular: 400,
+        medium: 500,
+        bold: 700
+    ),
+    size: (
+        xs: 0.75 * $base-unit,
+        sm: 0.875 * $base-unit,
+        md: $base-unit,
+        lg: 1.25 * $base-unit,
+        xl: 1.5 * $base-unit,
+        xxl: 2 * $base-unit
+    )
+);
+
+$borders: (
+    size: (
+        xs: calc($base-unit / 32),
+        sm: calc($base-unit / 16),
+        md: calc($base-unit / 8),
+        lg: calc($base-unit / 4),
+        xl: calc($base-unit / 2),
+        xxl: $base-unit
+    ),
+    radius: (
+        xs: calc($base-unit / 16),
+        sm: calc($base-unit / 8),
+        md: calc($base-unit / 4),
+        lg: calc($base-unit / 2),
+        xl: $base-unit,
+        xxl: calc($base-unit * 2)
+    )
+);
+
+$spacing: (
+    padding: (
+        xs: 0.25 * $base-unit,
+        sm: 0.5 * $base-unit,
+        md: $base-unit,
+        lg: 2 * $base-unit,
+        xl: 4 * $base-unit,
+        xxl: 8 * $base-unit
+    ),
+    margin: (
+        xs: 0.25 * $base-unit,
+        sm: 0.5 * $base-unit,
+        md: $base-unit,
+        lg: 2 * $base-unit,
+        xl: 4 * $base-unit,
+        xxl: 8 * $base-unit
+    ),
+    gap: (
+        xs: 0.25 * $base-unit,
+        sm: 0.5 * $base-unit,
+        md: $base-unit,
+        lg: 2 * $base-unit,
+        xl: 4 * $base-unit,
+        xxl: 8 * $base-unit
+    )
+);
+
+$transitions: (
+    slow: 0.4s,
+    normal: 0.3s,
+    fast: 0.2s
+);
+
+
+$shadows: (
+    sm: 0 0 6px rgba(0, 0, 0, 0.1),
+    md: 0 0 12px rgba(0, 0, 0, 0.2),
+    lg: 0 0 18px rgba(0, 0, 0, 0.4)
+);
+
+$breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
+// Helper function to flatten nested maps
+@function flatten-map($map, $prefix: '') {
+    $result: ();
+    @each $key, $value in $map {
+        @if type-of($value) == 'map' {
+            $result: map-merge($result, flatten-map($value, $prefix + $key + '-'));
+        } @else {
+            $result: map-merge($result, ($prefix + $key: $value));
+        }
+    }
+    @return $result;
+}
+
+
+:root {
+    --base-unit: #{$base-unit};
+    @each $key, $value in flatten-map($fonts, 'font-') { --#{$key}: #{$value}; } // font-weight-light, font-size-md, etc.
+    @each $key, $value in flatten-map($borders, 'border-') { --#{$key}: #{$value}; } // border-size-sm, border-radius-lg, etc.
+    @each $key, $value in flatten-map($spacing, '') { --#{$key}: #{$value}; } // padding-md, margin-lg, gap-sm, etc.
+    @each $key, $value in flatten-map($transitions, 'transition-') { --#{$key}: #{$value}; } // transition-fast, transition-slow, etc.
+    @each $key, $value in flatten-map($shadows, 'shadow-') { --#{$key}: #{$value}; } // shadow-sm, shadow-lg, etc.
+    @each $key, $value in flatten-map($breakpoints, 'breakpoint-') { --#{$key}: #{$value}; } // breakpoint-mobile, breakpoint-tablet, etc.
+}
