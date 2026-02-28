@@ -4,6 +4,7 @@ function Home() {
     return (
         <>
            <Navbar pageName="home"/>
+            <button>Hello</button>
         </>
     );
 }
