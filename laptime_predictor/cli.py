@@ -3,11 +3,11 @@ Command-line interface for laptime_predictor.
 
 Commands
 --------
-    python -m laptime_predictor train    --csv all.csv --out f1_model.pkl
-    python -m laptime_predictor predict  --csv all.csv --model f1_model.pkl
-    python -m laptime_predictor evaluate --csv all.csv --model f1_model.pkl
-    python -m laptime_predictor info     --model f1_model.pkl
-    python -m laptime_predictor demo     --model f1_model.pkl
+    python -m laptime_predictor train    --csv data/all.csv --out train/model.pkl
+    python -m laptime_predictor predict  --csv data/all.csv --model train/model.pkl
+    python -m laptime_predictor evaluate --csv data/all.csv --model train/model.pkl
+    python -m laptime_predictor info     --model train/model.pkl
+    python -m laptime_predictor demo     --model train/model.pkl
 """
 
 import argparse

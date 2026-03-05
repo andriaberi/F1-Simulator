@@ -50,5 +50,5 @@ LGBM_PARAMS: dict = dict(
 )
 
 # Persistence
-DEFAULT_MODEL_PATH: str = "f1_model.pkl"
-DEFAULT_DATA_PATH: str = "all.csv"
+DEFAULT_MODEL_PATH: str = "train/model.pkl"
+DEFAULT_DATA_PATH: str = "data/all.csv"
