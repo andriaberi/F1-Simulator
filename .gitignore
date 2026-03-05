@@ -207,12 +207,11 @@ marimo/_lsp/
 __marimo__/
 
 # Custom
-cache
-data
+cache/
+data/
+train/
 .idea
 .idea
-*.csv
-*.pkl
 node_modules/
 staticfiles/
 migrations/
