@@ -37,7 +37,7 @@ class F1LapPredictor:
         if lgbm_params:
             params.update(lgbm_params)
 
-        self.model = lgb.LGBMRegressor(**params)
+        self.model = lgb.LGBMRegressor(**params, verbosity=-1)
         self.test_size = test_size
         self.early_stopping_rounds = early_stopping_rounds
         self.verbose_eval = verbose_eval

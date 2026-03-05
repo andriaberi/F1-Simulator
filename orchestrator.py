@@ -56,6 +56,7 @@ def run_predictor(python_exe: str):
     if mode == "train":
         csv = ask("CSV file (optional): ")
         out = ask("Output model file (optional): ")
+        print("")
 
         if csv:
             cmd += ["--csv", csv]
@@ -84,6 +85,7 @@ def main():
     print("Jobs:")
     print("  data  -> lap_data")
     print("  pred  -> laptime_predictor")
+    print("")
 
     job = ask("Select job (data | pred): ")
 
