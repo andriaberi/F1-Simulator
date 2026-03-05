@@ -85,7 +85,7 @@ def main():
     print("  data  -> lap_data")
     print("  pred  -> laptime_predictor")
 
-    job = ask("Select job (data | pred | sim): ")
+    job = ask("Select job (data | pred): ")
 
     match job:
         case "data":
