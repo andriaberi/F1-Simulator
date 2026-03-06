@@ -1,0 +1,53 @@
+ALL_DRIVERS = [
+    {"name": "Lando Norris",        "team": "McLaren",         "id": "NOR"},
+    {"name": "Oscar Piastri",       "team": "McLaren",         "id": "PIA"},
+    {"name": "Max Verstappen",      "team": "Red Bull Racing", "id": "VER"},
+    {"name": "Yuki Tsunoda",        "team": "Red Bull Racing", "id": "TSU"},
+    {"name": "Charles Leclerc",     "team": "Ferrari",         "id": "LEC"},
+    {"name": "Lewis Hamilton",      "team": "Ferrari",         "id": "HAM"},
+    {"name": "George Russell",      "team": "Mercedes",        "id": "RUS"},
+    {"name": "Andrea Kimi Antonelli","team": "Mercedes",       "id": "ANT"},
+    {"name": "Fernando Alonso",     "team": "Aston Martin",    "id": "ALO"},
+    {"name": "Lance Stroll",        "team": "Aston Martin",    "id": "STR"},
+    {"name": "Pierre Gasly",        "team": "Alpine",          "id": "GAS"},
+    {"name": "Franco Colopinto",    "team": "Alpine",          "id": "COL"},
+    {"name": "Esteban Ocon",        "team": "Haas F1 Team",    "id": "OCO"},
+    {"name": "Oliver Bearman",      "team": "Haas F1 Team",    "id": "BEA"},
+    {"name": "Isack Hadjar",        "team": "Racing Bulls",    "id": "HAD"},
+    {"name": "Liam Lawson",         "team": "Racing Bulls",    "id": "LAW"},
+    {"name": "Alex Albon",          "team": "Williams",        "id": "ALB"},
+    {"name": "Carlos Sainz",        "team": "Williams",        "id": "SAI"},
+    {"name": "Nico Hülkenberg",     "team": "Kick Sauber",     "id": "HUL"},
+    {"name": "Gabriel Bortoleto",   "team": "Kick Sauber",     "id": "BOR"},
+]
+
+DRIVERS = [item["name"] for item in ALL_DRIVERS]
+TEAMS = [item["team"] for item in ALL_DRIVERS]
+IDS = [item["id"] for item in ALL_DRIVERS]
+
+EVENTS = [
+    "Australian Grand Prix",
+    "Chinese Grand Prix",
+    "Japanese Grand Prix",
+    "Bahrain Grand Prix",
+    "Saudi Arabian Grand Prix",
+    "Miami Grand Prix",
+    "Emilia Romagna Grand Prix",
+    "Monaco Grand Prix",
+    "Spanish Grand Prix",
+    "Canadian Grand Prix",
+    "Austrian Grand Prix",
+    "British Grand Prix",
+    "Belgian Grand Prix",
+    "Hungarian Grand Prix",
+    "Dutch Grand Prix",
+    "Italian Grand Prix",
+    "Azerbaijan Grand Prix",
+    "Singapore Grand Prix",
+    "United States Grand Prix",
+    "Mexico City Grand Prix",
+    "São Paulo Grand Prix",
+    "Las Vegas Grand Prix",
+    "Qatar Grand Prix",
+    "Abu Dhabi Grand Prix",
+]
