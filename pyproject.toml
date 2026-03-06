@@ -20,5 +20,5 @@ packages = ["lap_data", "laptime_predictor"]
 
 # Optional scripts / CLI entry points
 [project.scripts]
-lap-data        = "lap_data.main:__main__"
-laptime-predict = "laptime_predictor.main:__main__"
+lap-data        = "lap_data.__main__:main"
+laptime-predict = "laptime_predictor.__main__:main"
