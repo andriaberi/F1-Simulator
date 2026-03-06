@@ -16,9 +16,10 @@ dependencies = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["lap_data", "laptime_predictor"]
+packages = ["lap_data", "laptime_predictor", "simulator"]
 
 # Optional scripts / CLI entry points
 [project.scripts]
 lap-data        = "lap_data.__main__:main"
 laptime-predict = "laptime_predictor.__main__:main"
+simulator = "simulator.__main__:main"

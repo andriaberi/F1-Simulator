@@ -79,21 +79,29 @@ def run_predictor(python_exe: str):
 
     subprocess.run(cmd, cwd=ROOT)
 
+def run_simulation(python_exe: str):
+    cmd = f'start cmd /k "{python_exe} -m simulator"'
+
+    subprocess.run(cmd, cwd=ROOT, shell=True)
+
 def main():
     python_exe = get_venv_python()
 
     print("Jobs:")
     print("  data  -> lap_data")
     print("  pred  -> laptime_predictor")
+    print("   sim  -> simulator")
     print("")
 
-    job = ask("Select job (data | pred): ")
+    job = ask("Select job (data | pred | sim): ")
 
     match job:
         case "data":
             run_data(python_exe)
         case "pred":
             run_predictor(python_exe)
+        case "sim":
+            run_simulation(python_exe)
         case _:
             print("Unknown job")
 
