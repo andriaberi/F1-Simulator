@@ -187,6 +187,7 @@ class F1LapPredictor:
         """Serialise the fitted predictor to *path* using pickle."""
         self._check_fitted()
         path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
         with path.open("wb") as fh:
             pickle.dump(self, fh)
         print(f"Model saved → {path.resolve()}")
