@@ -200,7 +200,7 @@ class F1LapPredictor:
             obj = pickle.load(fh)
         if not isinstance(obj, cls):
             raise TypeError(f"Expected F1LapPredictor, got {type(obj)}")
-        print(f"Model loaded ← {path.resolve()}  (test MAE: {obj.test_mae_:.3f} s)")
+        print(f"Model loaded ← {path}  (test MAE: {obj.test_mae_:.3f} s)")
         return obj
 
     # Internals
