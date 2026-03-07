@@ -5,7 +5,7 @@ from InquirerPy import inquirer
 from simulator.config import DRIVERS, ALL_DRIVERS, EVENTS
 
 
-def strategy_simulator_prompt() -> Tuple[str, str, str, str]:
+def strategy_simulator_prompt() -> Tuple[str, str, str, str, str]:
     print("")
     driver = inquirer.select(
         message="Select a Driver:",
@@ -33,6 +33,13 @@ def strategy_simulator_prompt() -> Tuple[str, str, str, str]:
         amark="",
     ).execute()
 
+    strategy = inquirer.select(
+        message="Select Strategy Type:",
+        choices=["One Stop", "Two Stop"],
+        qmark="",
+        amark="",
+    ).execute()
+
     print()
 
-    return driver_id, driver_team, event, weather
+    return driver_id, driver_team, event, weather, strategy

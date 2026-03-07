@@ -3,7 +3,7 @@ import shutil
 
 from InquirerPy import inquirer
 
-from simulator.simulation import simulate_pitstop_strategy
+from simulator.strategy import simulate_pitstop_strategy
 from .prompts import strategy_simulator_prompt
 
 menu_options = ["Strategy Simulator", "Exit"]
@@ -42,8 +42,8 @@ def main_menu():
 
         match choice:
             case "Strategy Simulator":
-                (driver_id, team, event, weather) = strategy_simulator_prompt()
-                simulate_pitstop_strategy(driver_id, team, event, weather)
+                (driver_id, team, event, weather, strategy) = strategy_simulator_prompt()
+                simulate_pitstop_strategy(driver_id, team, event, weather, strategy)
 
                 input("\nPress Enter to return to menu...")
 
