@@ -6,6 +6,8 @@ An end-to-end Formula 1 data and strategy pipeline that:
 2. **Trains a LightGBM model** to predict lap times.
 3. **Simulates pit-stop strategies** from a terminal UI.
 
+![alt text](demo/screenshot.png)
+
 ## Project structure
 
 - `lap_data/` — FastF1-based data extraction pipeline.
